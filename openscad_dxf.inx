@@ -1,0 +1,23 @@
+<inkscape-extension>
+    <_name>OpenSCAD DXF Output</_name>
+    <id>org.openscad.output.dxf</id>
+        <dependency type="extension">org.inkscape.output.svg.inkscape</dependency>
+        <dependency type="executable" location="extensions">openscad_dxf.py</dependency>
+        <dependency type="executable" location="extensions">inkex.py</dependency>
+        <dependency type="executable" location="extensions">simplepath.py</dependency>
+        <dependency type="executable" location="extensions">simpletransform.py</dependency>
+        <dependency type="executable" location="extensions">cubicsuperpath.py</dependency>
+        <dependency type="executable" location="extensions">cspsubdiv.py</dependency>
+        <dependency type="executable" location="extensions">dxf_templates.py</dependency>
+    <output>
+        <extension>.dxf</extension>
+        <mimetype>image/dxf</mimetype>
+        <_filetypename>OpenSCAD DXF Output (*.DXF)</_filetypename>
+        <_filetypetooltip>OpenSCAD DXF Output</_filetypetooltip>
+        <dataloss>TRUE</dataloss>
+    </output>
+    <script>
+        <command reldir="extensions" interpreter="python">openscad_dxf.py</command>
+        <helper_extension>org.inkscape.output.svg.inkscape</helper_extension>
+    </script>
+</inkscape-extension>
