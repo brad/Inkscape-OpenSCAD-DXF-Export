@@ -26,7 +26,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 """
 
 import inkex, object2path, pathmodifier, simplepath, simplestyle, simpletransform, cspsubdiv, cubicsuperpath, dxf_templates, dxf_color, re
-from collections import OrderedDict
 
 class OpenSCADDXFEffect(object2path.ObjectToPath):
     def __init__(self):
