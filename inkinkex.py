@@ -153,15 +153,17 @@ class InkEffect(inkex.Effect):
                     cmd += " --verb="+verbs
                 else:
                     for id in ids:
-                        cmd += " --select="+id
-                        cmd += " --verb="+verbs
+                        if id:
+                            cmd += " --select="+id
+                            cmd += " --verb="+verbs
             else:
                 if isinstance(verbs, basestring):
                     cmd += " " + verbs
                 else:
                     for tverb, tid in verbs:
-                        cmd += " --select="+tid
-                        cmd += " --verb="+tverb
+                        if tid and tverb:
+                            cmd += " --select="+tid
+                            cmd += " --verb="+tverb
             cmd += " --verb=FileSave --verb=FileClose"
             try:
                 from subprocess import Popen, PIPE
