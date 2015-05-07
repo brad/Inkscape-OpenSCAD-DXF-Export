@@ -1,0 +1,26 @@
+language: python
+python:
+  - "pypy"
+  - "2.7"
+#  - "3.2"
+#  - "3.3"
+#  - "3.4"
+#  - "nightly"
+# Test both current major versions of Inkscape
+env:
+  - INKSCAPE_VERSION=0.48
+  - INKSCAPE_VERSION=0.91
+# Start xvfb so we can run Inkscape headless
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+# command to install dependencies
+install:
+  - test INKSCAPE_VERSION = 0.91 \
+    && sudo add-apt-repository ppa:inkscape.dev/stable
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq inkscape
+  - pip install -r test-requirements.txt
+# command to run tests
+script: nosetests --with-coverage --cover-branches
+after_success: coveralls
