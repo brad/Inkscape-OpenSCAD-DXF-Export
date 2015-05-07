@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-u"""
+"""
 Copyright (C) 2005,2007 Aaron Spike, aaron@ekips.org
 - template dxf_outlines.dxf added Feb 2008 by Alvin Penner, penner@vaxxine.com
 - layers, transformation, flattening added April 2008 by Bob Cook,
@@ -58,7 +59,7 @@ class OpenSCADDXFEffect(object2path.ObjectToPath):
         self.dxf_color = dxf_color.DxfColor()
 
     def output(self):
-        print self.dxf
+        print(self.dxf)
 
     def dxf_add_codes(self, codes):
         lines = ''
