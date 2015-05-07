@@ -16,7 +16,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
 # command to install dependencies
 install:
-  - test INKSCAPE_VERSION = 0.91 \
+  - test $INKSCAPE_VERSION = 0.91 \
     && sudo add-apt-repository ppa:inkscape.dev/stable
   - sudo apt-get update -qq
   - sudo apt-get install -qq inkscape
