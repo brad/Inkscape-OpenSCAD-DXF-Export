@@ -158,9 +158,12 @@ class OpenSCADDXFEffect(object2path.ObjectToPath):
         self.dxf += dxf_templates.r14_header
 
         scale = 25.4/90.0
-        h = inkex.unittouu(
-            self.document.getroot().xpath('@height', namespaces=inkex.NSS)[0]
-        )
+        doc_height = self.document.getroot().xpath(
+            '@height', namespaces=inkex.NSS)[0]
+        try:
+            h = self.unittouu(doc_height)
+        except AttributeError:  # Prior to Inkscape 0.91 fallback
+            h = inkex.unittouu(doc_height)
 
         path = '//svg:path'
         pm = pathmodifier.PathModifier()

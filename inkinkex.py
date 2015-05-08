@@ -138,9 +138,9 @@ class InkEffect(inkex.Effect):
         fd, tmp = tempfile.mkstemp(".svg", text=True)
         try:
             self.document.write(tmp)
-            cmd = self.inkscape_path + " --file=\"%s\"" % tmp
+            cmd = self.inkscape_path + "-z --file=\"%s\"" % tmp
             if ids:
-                if isinstance(ids, basestring):
+                if isinstance(ids, str):
                     cmd += " --select=" + ids
                     cmd += " --verb=" + verbs
                 else:
@@ -149,7 +149,7 @@ class InkEffect(inkex.Effect):
                             cmd += " --select=" + id
                             cmd += " --verb=" + verbs
             else:
-                if isinstance(verbs, basestring):
+                if isinstance(verbs, str):
                     cmd += " " + verbs
                 else:
                     for tverb, tid in verbs:
@@ -158,7 +158,7 @@ class InkEffect(inkex.Effect):
                             cmd += " --verb=" + tverb
             cmd += " --verb=FileSave --verb=FileClose"
             p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
-            rc = p.wait()
+            p.wait()
             out = p.stdout.read()
             err = p.stderr.read()
             self.parse(tmp)

@@ -1,4 +1,4 @@
 # .coveragerc to control coverage.py
 [run]
 source=.
-omit = /usr/share/*,.tox/*,*/python?.?/*,*/pypy/*,tests/*,setup.py
+omit = /usr/share/*,.tox/*,*/python?.?/*,*/pypy/*,tests/*,setup.py,*/virtualenv/*
