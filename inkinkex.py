@@ -73,6 +73,7 @@ class InkEffect(inkex.Effect):
     def __init__(self):
         inkex.Effect.__init__(self)
         self.inkscape_path = inkutils.find_inkscape_path(sys.path)
+        self.sleep_time = 4
 
     def select_verb(self, id, verb, clause=True):
         if clause:
@@ -164,7 +165,7 @@ class InkEffect(inkex.Effect):
             # Wait until we have finished writing the tmp file
             file_size = 0
             while file_size == 0 or file_size != os.stat(tmp).st_size:
-                time.sleep(3)
+                time.sleep(self.sleep_time)
                 file_size = os.stat(tmp).st_size
 
             # Kill the process
