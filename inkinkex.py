@@ -61,10 +61,11 @@ import inkex
 import inkutils
 
 import os
+import signal
+import subprocess
 import sys
 import tempfile
-
-from subprocess import Popen, PIPE
+import time
 
 
 class InkEffect(inkex.Effect):
@@ -72,6 +73,11 @@ class InkEffect(inkex.Effect):
     def __init__(self):
         inkex.Effect.__init__(self)
         self.inkscape_path = inkutils.find_inkscape_path(sys.path)
+
+    def select_verb(self, id, verb, clause=True):
+        if clause:
+            return " --select=%s --verb=%s" % (id, verb)
+        return ""
 
     def call_inkscape(self, verbs, ids=None):
         """Calls Inkscape to perform inkscape operations on the document.
@@ -138,29 +144,31 @@ class InkEffect(inkex.Effect):
         fd, tmp = tempfile.mkstemp(".svg", text=True)
         try:
             self.document.write(tmp)
-            cmd = self.inkscape_path + "-z --file=\"%s\"" % tmp
+            cmd = self.inkscape_path + " --file=\"%s\"" % tmp
             if ids:
                 if isinstance(ids, str):
-                    cmd += " --select=" + ids
-                    cmd += " --verb=" + verbs
+                    cmd += self.select_verb(ids, verbs)
                 else:
                     for id in ids:
-                        if id:
-                            cmd += " --select=" + id
-                            cmd += " --verb=" + verbs
+                        cmd += self.select_verb(id, verbs, id)
             else:
                 if isinstance(verbs, str):
                     cmd += " " + verbs
                 else:
                     for tverb, tid in verbs:
-                        if tid and tverb:
-                            cmd += " --select=" + tid
-                            cmd += " --verb=" + tverb
+                        cmd += self.select_verb(tid, tverb, tid and tverb)
             cmd += " --verb=FileSave --verb=FileClose"
-            p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
-            p.wait()
-            out = p.stdout.read()
-            err = p.stderr.read()
+
+            p = subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
+
+            # Wait until we have finished writing the tmp file
+            file_size = 0
+            while file_size == 0 or file_size != os.stat(tmp).st_size:
+                time.sleep(3)
+                file_size = os.stat(tmp).st_size
+
+            # Kill the process
+            os.killpg(p.pid, signal.SIGTERM)
             self.parse(tmp)
             self.getposinlayer()
             self.getselected()

@@ -2,6 +2,7 @@
 *.egg-info
 .coverage
 cover
+htmlcov
 .tox
 
 
