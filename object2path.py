@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-u"""
+"""
 Converts objects to paths
 
 The extension converts all objects in the current layer into paths
@@ -25,29 +26,30 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 """
 
-__author__ = u"Jan Thor, Brad Pitcher"
-__date__ = u"2011-01-26"
-__version__ = u"0.0.1"
-__credits__ = u"""http://www.janthor.com"""
-__docformat__ = u"restructuredtext de"
+__author__ = "Jan Thor, Brad Pitcher"
+__date__ = "2011-01-26"
+__version__ = "0.0.1"
+__credits__ = """http://www.janthor.com"""
+__docformat__ = "restructuredtext de"
 
 import inkinkex
 import inkex
 import re
+
 
 S = "{http://www.w3.org/2000/svg}"
 nsmap = {"svg": "http://www.w3.org/2000/svg"}
 
 
 class ObjectToPath(inkinkex.InkEffect):
-    
     def effect(self):
         objects = []
         # Collect objects
         for node in self.current_layer.iterdescendants():
-                objects.append(node.get("id"))
+            objects.append(node.get("id"))
         # Convert objects to paths
         self.call_inkscape("ObjectToPath", objects)
 
 
-if __name__ == '__main__': ObjectToPath().affect()
+if __name__ == '__main__':
+    ObjectToPath().affect()

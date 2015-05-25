@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-u"""
+"""
 Calls Inkscape from within an Inkscape extension.
 
 Inkscape provides a lot of functionality which is usually unusable from within
@@ -49,45 +50,37 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 """
 
-__author__ = u"Jan Thor"
-__date__ = u"2011-01-24"
-__version__ = u"0.0.1"
-__credits__ = u"""www.janthor.com"""
-__docformat__ = u"restructuredtext de"
+__author__ = "Jan Thor, Brad Pitcher"
+__date__ = "2011-01-24"
+__version__ = "0.0.1"
+__credits__ = """www.janthor.com"""
+__docformat__ = "restructuredtext de"
 
 
 import inkex
+import inkutils
 
 import os
 import sys
 import tempfile
 
-
-class InkscapeEnvironmentError(EnvironmentError):
-    pass
-
-
-def _find_inkscape_path(pathlist):
-    for path in ["/usr/bin/inkscape", "/usr/local/bin/inkscape",
-            "/Applications/Inkscape.app/Contents/Resources/bin/inkscape"]:
-        if os.path.exists(path):
-            return path
-    for p in pathlist:
-        p = p.lower().replace("\\", "/")
-        if "/python/lib" in p:
-            return os.path.join(p.split("/python/lib")[0], "inkscape")
-    raise InkscapeEnvironmentError(
-        u"Can't find the path of the Inkscape executable.")
+from subprocess import Popen, PIPE
 
 
 class InkEffect(inkex.Effect):
 
     def __init__(self):
         inkex.Effect.__init__(self)
-        self.inkscape_path = _find_inkscape_path(sys.path)
+        self.inkscape_path = inkutils.find_inkscape_path(sys.path)
+        self.sleep_time = 3  # Amount of time needed to start up Inkscape
+
+    def select_verb(self, id, verb, clause=True):
+        if clause:
+            return " --select=%s --verb=%s" % (id, verb)
+        return ""
 
     def call_inkscape(self, verbs, ids=None):
-        u"""Calls Inkscape to perform inkscape operations on the document.
+        """Calls Inkscape to perform inkscape operations on the document.
 
         Note that this destroys and recreates self.document, so any node
         you previously collected is no longer valid. Any manipulation you
@@ -146,43 +139,32 @@ class InkEffect(inkex.Effect):
                     " --verb=ObjectToPath")
 
                 # ...
-
         """
+
         fd, tmp = tempfile.mkstemp(".svg", text=True)
         try:
             self.document.write(tmp)
             cmd = self.inkscape_path + " --file=\"%s\"" % tmp
             if ids:
-                if isinstance(ids, basestring):
-                    cmd += " --select=" + ids
-                    cmd += " --verb=" + verbs
+                if isinstance(ids, str):
+                    cmd += self.select_verb(ids, verbs)
                 else:
                     for id in ids:
-                        if id:
-                            cmd += " --select=" + id
-                            cmd += " --verb=" + verbs
+                        cmd += self.select_verb(id, verbs, id)
             else:
-                if isinstance(verbs, basestring):
+                if isinstance(verbs, str):
                     cmd += " " + verbs
                 else:
                     for tverb, tid in verbs:
-                        if tid and tverb:
-                            cmd += " --select=" + tid
-                            cmd += " --verb=" + tverb
-            cmd += " --verb=FileSave --verb=FileClose"
-            try:
-                from subprocess import Popen, PIPE
-                p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
-                rc = p.wait()
-                out = p.stdout.read()
-                err = p.stderr.read()
-            except ImportError:
-                from popen2 import Popen3
-                p = Popen3(cmd, True)
-                p.wait()
-                rc = p.poll()
-                out = p.fromchild.read()
-                err = p.childerr.read()
+                        cmd += self.select_verb(tid, tverb, tid and tverb)
+            cmd += " --verb=FileSave --verb=FileQuit"
+
+            p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+
+            rc = p.wait()
+            out = p.stdout.read()
+            err = p.stderr.read()
+
             self.parse(tmp)
             self.getposinlayer()
             self.getselected()
