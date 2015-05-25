@@ -61,9 +61,10 @@ import inkex
 import inkutils
 
 import os
-import subprocess
 import sys
 import tempfile
+
+from subprocess import Popen, PIPE
 
 
 class InkEffect(inkex.Effect):
@@ -158,7 +159,11 @@ class InkEffect(inkex.Effect):
                         cmd += self.select_verb(tid, tverb, tid and tverb)
             cmd += " --verb=FileSave --verb=FileQuit"
 
-            p = subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
+            p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+
+            rc = p.wait()
+            out = p.stdout.read()
+            err = p.stderr.read()
 
             self.parse(tmp)
             self.getposinlayer()
