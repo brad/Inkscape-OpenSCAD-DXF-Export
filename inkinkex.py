@@ -61,11 +61,9 @@ import inkex
 import inkutils
 
 import os
-import signal
 import subprocess
 import sys
 import tempfile
-import time
 
 
 class InkEffect(inkex.Effect):
@@ -158,19 +156,10 @@ class InkEffect(inkex.Effect):
                 else:
                     for tverb, tid in verbs:
                         cmd += self.select_verb(tid, tverb, tid and tverb)
-            cmd += " --verb=FileSave --verb=FileClose"
+            cmd += " --verb=FileSave --verb=FileQuit"
 
             p = subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
 
-            # Wait until we have finished writing the tmp file
-            file_size = os.stat(tmp).st_size
-            time.sleep(self.sleep_time)
-            while file_size != os.stat(tmp).st_size:
-                file_size = os.stat(tmp).st_size
-                time.sleep(0.01)
-
-            # Kill the process
-            os.killpg(p.pid, signal.SIGTERM)
             self.parse(tmp)
             self.getposinlayer()
             self.getselected()
