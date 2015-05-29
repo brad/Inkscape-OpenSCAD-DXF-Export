@@ -72,7 +72,6 @@ class InkEffect(inkex.Effect):
     def __init__(self):
         inkex.Effect.__init__(self)
         self.inkscape_path = inkutils.find_inkscape_path(sys.path)
-        self.sleep_time = 3  # Amount of time needed to start up Inkscape
 
     def select_verb(self, id, verb, clause=True):
         if clause:
