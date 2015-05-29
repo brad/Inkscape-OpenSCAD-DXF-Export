@@ -61,7 +61,6 @@ import inkex
 import inkutils
 
 import os
-import sys
 import tempfile
 
 from subprocess import Popen, PIPE
@@ -71,7 +70,7 @@ class InkEffect(inkex.Effect):
 
     def __init__(self):
         inkex.Effect.__init__(self)
-        self.inkscape_path = inkutils.find_inkscape_path(sys.path)
+        self.inkscape_path = inkutils.find_inkscape_path()
 
     def select_verb(self, id, verb, clause=True):
         if clause:
