@@ -4,19 +4,19 @@
 import multiprocessing
 import re
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 setup(
-    name='inkscape-openscad-dxf-export',
+    name='inkscape-openscad-dxf',
     version='0.0.1',
     description='Inkscape OpenSCAD DXF Export',
     long_description=open('README.md').read(),
     author='Brad Pitcher',
     author_email='bradpitcher@gmail.com',
     url='https://github.com/brad/Inkscape-OpenSCAD-DXF-Export',
-    packages=[],
-    package_data={'': ['COPYING', 'README.md']},
+    packages=find_packages(exclude=['ez_setup', 'tests', 'tests.*']),
+    package_data={'openscad_dxf': ['../openscad_dxf.inx']},
     include_package_data=True,
     install_requires=["setuptools"],
     license='GPL',
@@ -25,13 +25,8 @@ setup(
     classifiers=(
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        'License :: OSI Approved :: GNU Public License',
-        'Programming Language :: Python',
+        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: PyPy'
     ),
 )

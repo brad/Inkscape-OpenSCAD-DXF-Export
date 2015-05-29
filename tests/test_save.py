@@ -6,13 +6,13 @@ import unittest
 
 from subprocess import Popen, PIPE
 
-sys.path.append('..')  # Allow importing from parent dir
-from inkutils import find_inkscape_path
+from openscad_dxf.inkutils import find_inkscape_path
+
 # Add inkscape extensions to path
 sys.path.append(os.path.join(
     find_inkscape_path(sys.path, path_type='share'), 'extensions'
 ))
-from openscad_dxf import OpenSCADDXFEffect
+from openscad_dxf.openscad_dxf import OpenSCADDXFEffect
 
 
 class TestInkscapeOpenSCADDXFSave(unittest.TestCase):
