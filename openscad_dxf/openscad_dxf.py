@@ -81,16 +81,20 @@ class OpenSCADDXFEffect(object2path.ObjectToPath):
                 if f > 2:
                     # something has gone very wrong.
                     break
-
         lines = ''
         for sub in p:
-            lines += self.dxf_add_codes([
+            codes = []
+            if color is not None:
+                dxf_color_val = str(self.dxf_color.color_value(color))
+                codes = [('62', dxf_color_val,)]
+            codes += [
                 ('0', 'LWPOLYLINE'),
                 ('100', 'AcDbPolyline'),
                 ('8', layer),
                 ('90', '%i' % (len(sub))),
                 ('70', '0')
-            ])
+            ]
+            lines += self.dxf_add_codes(codes)
             for i in range(len(sub)):
                 self.handle += 1
                 x = sub[i][1][0]

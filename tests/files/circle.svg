@@ -13,7 +13,7 @@
    height="1052.3622047"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r"
    sodipodi:docname="circle.svg">
   <defs
      id="defs4" />
@@ -25,16 +25,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="375"
+     inkscape:cx="-57.857143"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1027"
-     inkscape:window-height="558"
-     inkscape:window-x="48"
-     inkscape:window-y="48"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1366"
+     inkscape:window-height="715"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,13 +52,15 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       sodipodi:type="arc"
-       style="fill:#ff0000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:#00ff00;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 380.48438,290.78125 c -116.7733,-0.73843 -230.88895,74.0101 -275.14063,182.5332 -38.290542,89.23192 -30.453071,197.49457 23.12708,279.06999 49.28735,77.42489 135.28108,130.57307 227.0293,137.55399 90.07162,8.02526 183.97875,-27.05571 245.26723,-94.17546 59.72615,-63.66465 89.86543,-154.14728 78.65626,-240.48581 C 669.33884,470.00709 621.00858,389.35187 549.02018,342.05367 499.59003,308.82577 440.0009,290.33478 380.48438,290.78125 Z"
        id="path2983"
-       sodipodi:cx="381.42856"
-       sodipodi:cy="590.93359"
-       sodipodi:rx="324.28571"
-       sodipodi:ry="324.28571"
-       d="m 705.71426,590.93359 a 324.28571,324.28571 0 1 1 -648.571407,0 324.28571,324.28571 0 1 1 648.571407,0 z" />
+       inkscape:connector-curvature="0" />
+    <circle
+       r="324.28571"
+       cy="592.36218"
+       cx="379.28571"
+       style="fill:none;fill-rule:evenodd;stroke:#00ff00;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2983-9" />
   </g>
 </svg>
