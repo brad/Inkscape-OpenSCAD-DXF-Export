@@ -79,6 +79,16 @@ class InkEffect(inkex.Effect):
             return " --select=%s --verb=%s" % (id, verb)
         return ""
 
+    def generate_commands(self, verbs, ids):
+        if ids and isinstance(ids, str):
+            return self.select_verb(ids, verbs)
+        elif ids:
+            return "".join([self.select_verb(id, verbs, id) for id in ids])
+        elif isinstance(verbs, str):
+            return " " + verbs
+        else:
+            return "".join([self.select_verb(i, v, i and v) for v, i in verbs])
+
     def call_inkscape(self, verbs, ids=None):
         """Calls Inkscape to perform inkscape operations on the document.
 
@@ -145,18 +155,7 @@ class InkEffect(inkex.Effect):
         try:
             self.document.write(tmp)
             cmd = self.inkscape_path + " --file=\"%s\"" % tmp
-            if ids:
-                if isinstance(ids, str):
-                    cmd += self.select_verb(ids, verbs)
-                else:
-                    for id in ids:
-                        cmd += self.select_verb(id, verbs, id)
-            else:
-                if isinstance(verbs, str):
-                    cmd += " " + verbs
-                else:
-                    for tverb, tid in verbs:
-                        cmd += self.select_verb(tid, tverb, tid and tverb)
+            cmd += self.generate_commands(verbs, ids)
             cmd += " --verb=FileSave --verb=FileQuit"
 
             p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
