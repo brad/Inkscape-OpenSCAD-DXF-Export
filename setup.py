@@ -9,9 +9,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='inkscape-openscad-dxf',
-    version='0.0.2dev',
+    version='0.0.2',
     description='Inkscape OpenSCAD DXF Export',
-    long_description=open('README.md').read(),
+    long_description=open('README.rst').read(),
     author='Brad Pitcher',
     author_email='bradpitcher@gmail.com',
     url='https://github.com/brad/Inkscape-OpenSCAD-DXF-Export',

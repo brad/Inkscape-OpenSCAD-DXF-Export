@@ -1,1 +1,1 @@
-include COPYING README.md openscad_dxf.inx
+include COPYING README.rst openscad_dxf.inx
