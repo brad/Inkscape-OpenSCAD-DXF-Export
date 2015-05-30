@@ -4,6 +4,8 @@
     :target: https://coveralls.io/r/brad/Inkscape-OpenSCAD-DXF-Export?branch=master
 .. image:: https://www.versioneye.com/user/projects/5562cdd13664660019180100/badge.svg?style=flat
     :target: https://www.versioneye.com/user/projects/5562cdd13664660019180100
+.. image:: https://img.shields.io/pypi/dd/inkscape-openscad-dxf.svg
+    :target: https://pypi.python.org/pypi/inkscape-openscad-dxf
 
 See http://www.thingiverse.com/thing:14221
 
