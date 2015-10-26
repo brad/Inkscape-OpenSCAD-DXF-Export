@@ -9,7 +9,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='inkscape-openscad-dxf',
-    version='0.0.3',
+    version='0.0.4dev',
     description='Inkscape OpenSCAD DXF Export',
     long_description=open('README.rst').read(),
     author='Brad Pitcher',
