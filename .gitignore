@@ -5,5 +5,5 @@ dist
 cover
 htmlcov
 .tox
-
-
+build
+env
