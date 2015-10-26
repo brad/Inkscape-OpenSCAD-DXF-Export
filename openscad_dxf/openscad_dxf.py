@@ -222,15 +222,23 @@ class OpenSCADDXFEffect(object2path.ObjectToPath):
             ('70', str(len(layers)))
         ])
 
-        # Add dimensions for total width and height
+        # Add dimensions for total width and height, and total min/max x/y
         dxf_dims = self.dxf_add_dimension(
             'total_width',
             [self.global_dims['minX'], self.global_dims['maxX']]
         )
         dxf_dims += self.dxf_add_dimension(
+            'total_minx', [self.global_dims['minX'], None])
+        dxf_dims += self.dxf_add_dimension(
+            'total_maxx', [None, self.global_dims['maxX']])
+        dxf_dims += self.dxf_add_dimension(
             'total_height', None,
             [self.global_dims['minY'], self.global_dims['maxY']]
         )
+        dxf_dims += self.dxf_add_dimension(
+            'total_miny', [self.global_dims['minY'], None])
+        dxf_dims += self.dxf_add_dimension(
+            'total_maxy', [None, self.global_dims['maxY']])
         for layer in layers:
             self.dxf += self.dxf_add_codes([
                 ('0', 'LAYER'),
@@ -251,10 +259,18 @@ class OpenSCADDXFEffect(object2path.ObjectToPath):
                 None, layer
             )
             dxf_dims += self.dxf_add_dimension(
+                layer + '_minx', [layer_dims['minX'], None], None, layer)
+            dxf_dims += self.dxf_add_dimension(
+                layer + '_maxx', [None, layer_dims['maxX']], None, layer)
+            dxf_dims += self.dxf_add_dimension(
                 layer + '_height', None,
                 [layer_dims['minY'], layer_dims['maxY']],
                 layer
             )
+            dxf_dims += self.dxf_add_dimension(
+                layer + '_miny', [layer_dims['minY'], None], None, layer)
+            dxf_dims += self.dxf_add_dimension(
+                layer + '_maxy', [None, layer_dims['maxY']], None, layer)
 
         self.dxf += self.dxf_add_codes([
             ('0', 'ENDTAB'),
