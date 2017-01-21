@@ -36,3 +36,8 @@ OS X
 -----
   * *Global* - ``/Applications/Inkscape.app/Contents/Resources/extensions``
   * *Local* - ``$HOME/.config/inkscape/extensions``
+
+
+.. image:: https://badges.gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby.svg
+   :alt: Join the chat at https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby
+   :target: https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
