@@ -7,6 +7,10 @@
 .. image:: https://img.shields.io/pypi/dd/inkscape-openscad-dxf.svg
     :target: https://pypi.python.org/pypi/inkscape-openscad-dxf
 
+.. image:: https://badges.gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby.svg
+   :alt: Join the chat at https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby
+   :target: https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+   
 See http://www.thingiverse.com/thing:14221
 
 Installation
@@ -36,8 +40,3 @@ OS X
 -----
   * *Global* - ``/Applications/Inkscape.app/Contents/Resources/extensions``
   * *Local* - ``$HOME/.config/inkscape/extensions``
-
-
-.. image:: https://badges.gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby.svg
-   :alt: Join the chat at https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby
-   :target: https://gitter.im/Inkscape-OpenSCAD-DXF-Export/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
