@@ -40,3 +40,8 @@ OS X
 -----
   * *Global* - ``/Applications/Inkscape.app/Contents/Resources/extensions``
   * *Local* - ``$HOME/.config/inkscape/extensions``
+
+
+.. image:: https://app.codesponsor.io/embed/CchnrFa1MBdE7gcvc7VunVA5/brad/Inkscape-OpenSCAD-DXF-Export.svg
+   :alt: Sponsor
+   :target: https://app.codesponsor.io/link/CchnrFa1MBdE7gcvc7VunVA5/brad/Inkscape-OpenSCAD-DXF-Export
