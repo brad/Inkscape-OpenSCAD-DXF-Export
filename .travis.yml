@@ -8,8 +8,8 @@ python:
 #  - "nightly"
 # Test both current major versions of Inkscape
 env:
-  - INKSCAPE_VERSION="0.48.3.1-1ubuntu1.1"
-  - INKSCAPE_VERSION="0.91.0+37~ubuntu12.04.1"
+  - INKSCAPE_VERSION="0.48.4-3ubuntu2"
+  - INKSCAPE_VERSION="0.92.2+67~ubuntu14.04.1"
 # Start xvfb so we can run Inkscape headless
 before_install:
   - "export DISPLAY=:99.0"
