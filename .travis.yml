@@ -6,9 +6,8 @@ python:
 #  - "3.3"
 #  - "3.4"
 #  - "nightly"
-# Test both current major versions of Inkscape
+# Test current major versions of Inkscape
 env:
-  - INKSCAPE_VERSION="0.48.4-3ubuntu2"
   - INKSCAPE_VERSION="0.92.3+68~ubuntu14.04.1"
 # Start xvfb so we can run Inkscape headless
 before_install:
